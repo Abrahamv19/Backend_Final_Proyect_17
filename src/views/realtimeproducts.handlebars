@@ -1,0 +1,159 @@
+
+<nav style="background-color: aqua;">
+  <div class='desktopNavbar'>
+    {{#if realTimeProductsRender.realTimeProductsContext.session}}
+        <div>
+          <div style="text-align: left;">
+                       <a onclick=" location.href='/products'"><img src='https://res.cloudinary.com/abrahama19/image/upload/v1691861389/logoPS5_ryhtjh.jpg' alt='logo' width='200px' style='margin-left: 1.4rem;' /></a>
+                       </div>
+                         <span class='desktopNavLinkLogo'>Ps5 Web Store22</span>
+                    </div>
+      <div>
+        <h2 class='navbar__title'>{{realTimeProductsRender.realTimeProductsContext.session.firstName}} New Product.</h2>
+      </div>
+      <div class='navbar__content'>
+        <span class='desktopNavIcon'>{{realTimeProductsRender.realTimeProductsContext.session.firstName}}<a
+            href='/api/sessions/current'
+            class='cartInfo'
+            id='{{realTimeProductsRender.realTimeProductsContext.session.cartID}}'
+          ><img src='/images/login.png' alt='Icono login' /></a></span>
+
+      </div>
+    {{else}}
+      <p class='navbar__guest-message'>WELCOME TO PS5 WEB STORE</p>
+      <a href='/?login=true' class='navbar__link button is-light'>LOG IN</a>
+      <a href='/?register=true' class='navbar__link button is-primary'>SIGN IN</a>
+    {{/if}}
+    {{#if realTimeProductsRender.realTimeProductsContext.isAdmin}}
+      <div class='admin-button'>
+        <button class='button is-info' onclick="location.href='/api/users/adminControl'">
+          <span class='icon'><i class='material-icons'>admin_panel_settings</i></span>
+          <span>Users Database</span>
+        </button>
+      </div>
+    {{/if}}
+  </div>
+</nav>
+<section class="centered-div" style="background-color: black;">
+  
+  <form id='formProducts' class='styleForm' action='/api/products' method='post' enctype='multipart/form-data'>
+    <h3 class='is-size-3 mb-5'>ADD NEW PRODUCT</h3>
+    <div class='field'>
+      <label for='title' class='label'>Title</label>
+      <div class='control'>
+        <input class='input is-success' type='text' placeholder='Agregar un titulo al producto' value='' name='title' />
+      </div>
+    </div>
+    <div class='field'>
+      <label class='label'>Description</label>
+      <div class='control'>
+        <textarea value='' name='description' class='textarea is-success' placeholder='Ingrese una breve descripción del producto' rows='3'></textarea>
+      </div>
+    </div>
+    <div class='field'>
+      <label class='label'>Code</label>
+      <div class='control'>
+        <input class='input is-success' type='text' placeholder='Ingrese el código del producto' value='' name='code' />
+      </div>
+    </div>
+    <div class='field'>
+      <label class='label'>Price</label>
+      <div class='control'>
+        <input class='input is-success' type='text' placeholder='Ingrese el precio del producto' value='' name='price' />
+      </div>
+    </div>
+    <div class='field'>
+      <label class='label'>Stock</label>
+      <div class='control'>
+        <input class='input is-success' type='number' min='0' max='10000' value='0' name='stock' />
+      </div>
+    </div>
+    <div class='field'>
+      <label class='label'></label>
+      <div class='control'>
+        <input style='margin-top: 10px' type='hidden' class='form-control' value='true' name='status' required />
+      </div>
+    </div>
+    <div class='field'>
+      <label class='label'>Category</label>
+      <div class='control'>
+        <div class='select is-primary'>
+          <select name='category'>
+             <option value="Accion">Accion</option>
+             <option value="Aventura">Aventura</option>
+             <option value="Deportes">Deportes</option>
+             <option value="Terror">Terror</option>
+          </select>
+        </div>
+      </div>
+    </div>
+    <input type='hidden' name='fileType' value='product' />
+    <div class='field'>
+      <label class='label'>Image</label>
+      <div class='control'>
+        <input type='file' id='thumbnail' name='thumbnail' />
+      </div>
+    </div>
+    <div class='field is-grouped'>
+      <div class='control'>
+        <button class='button is-primary' type='submit'>ADD PRODUCT</button>
+      </div>
+    </div>
+  </form>
+</section>
+<section class='mt-6'>
+  <div id='cardContainer' style='text-align: center;' class='container is-flex is-flex-wrap-wrap'>
+    <div>
+      SORT
+      <a href='?page={{paginationInfo.page}}&limit={{paginationInfo.limit}}&sort=asc'>⬆️</a>
+      <a href='?page={{paginationInfo.page}}&limit={{paginationInfo.limit}}&sort=desc'>⬇️</a>
+    </div>
+    {{#each realTimeProductsRender.productsVisualice}}
+      <div class='card' style='width: 150px; margin: 20px'>
+        <div class='card-content'>
+          <div class='media'>
+            <div class='media-content'>
+              <p class='title is-6'>Name: {{this.title}}</p>
+              <p class='subtitle is-6'>Descrption: {{this.description}}</p>
+              <p class='subtitle is-6'>Price: {{this.price}}</p>
+              <p class='subtitle is-6'>Stock: {{this.stock}}</p>
+              <p class='subtitle is-6'>Category: {{this.category}}</p>
+            </div>
+          </div>
+          <button class='button is-small delete-button' type='button' data-product-id='{{this._id}}' onclick='deleteProduct("{{this._id}}")'>
+            <ion-icon name='trash'></ion-icon>
+          </button>
+        </div>
+      </div>
+    {{/each}}
+  </div>
+  <div style='display: flex; justify-content: center; margin-top: 30px'>
+    <div class='pagination'>
+      {{#if realTimeProductsRender.paginationInfo.hasPrevPage}}
+        <a href='?page={{realTimeProductsRender.paginationInfo.prevPage}}&limit={{realTimeProductsRender.paginationInfo.limit}}&sort={{realTimeProductsRender.sort}}'>⬅️ preview</a>
+      {{/if}}
+      <span style='margin-left: 20px; margin-right: 20px'>
+        Page
+        {{realTimeProductsRender.paginationInfo.page}}
+        of
+        {{realTimeProductsRender.paginationInfo.totalPages}}
+      </span>
+      {{#if realTimeProductsRender.paginationInfo.hasNextPage}}
+        <a href='?page={{realTimeProductsRender.paginationInfo.nextPage}}&limit={{realTimeProductsRender.paginationInfo.limit}}&sort={{sort}}'>Next ➡️</a>
+      {{/if}}
+    </div>
+  </div>
+</section>
+{{!-- <div class='chatButton'>
+  <button onclick="location.href='/chat'">
+    <i class='material-icons'>chat</i></button>
+</div> --}}
+
+ <div class='centered-div'>
+      <button onclick="location.href='/chat'" class="btn btn-info">
+        <p>Chat with Us!!</p></button>
+    </div>
+
+<script src='/js/products.js'></script>
+<script src='/js/searchbar.js'></script>
+

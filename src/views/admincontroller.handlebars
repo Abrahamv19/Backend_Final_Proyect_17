@@ -1,0 +1,43 @@
+<div class="centered-div" style="background-color: black;">
+<h1 style="color: white; font-family:Georgia, 'Times New Roman', Times, serif; font-size: 30px;">USERS DATA BASE</h1>
+<button class='averageButton button is-primary mt-3' onclick="location.href='/products'">Products</button>
+<button class='averageButton button is-primary mt-3' onclick="location.href='/api/sessions/current'">User</button>
+</div>
+
+<div class='containerAdmin'>
+  <table class='data-table'>
+    <thead>
+      <tr>
+        <th>User ID</th>
+        <th>Email</th>
+        <th>Name</th>
+        <th>Apellido</th>
+        <th>Rol</th>
+        <th>Age</th>
+        <th>Last Conection</th>
+      </tr>
+    </thead>
+    <tbody>
+      {{#each users}}
+        <tr>
+          <td>{{_id}}</td>
+          <td>{{email}}</td>
+          <td>{{firstName}}</td>
+          <td>{{lastName}}</td>
+          <td>
+            <a href='/api/users/premium/{{_id}}' class='{{role}}'>{{role}}</a>
+          </td>
+          <td class='small-cell'>{{age}}</td>
+          <td>{{last_connection}}</td>
+          <td>
+            <form id='deleteUserForm_{{_id}}'>
+              <button type='button' class='averageButton button is-primary mt-3' onclick="deleteUser('{{_id}}')">Eliminar</button>
+            </form>
+          </td>
+        </tr>
+      {{/each}}
+    </tbody>
+  </table>
+</div>
+
+<script src='/js/profile.js'></script>

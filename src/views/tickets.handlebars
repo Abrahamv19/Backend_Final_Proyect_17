@@ -1,0 +1,52 @@
+<div class='container login centered-div' style="padding-top: 3rem;">
+  <div class='card col-10 cardsBorder'>
+  
+      <div class="centered-div home-title">
+      <h2>CHECKOUT</h2>
+      </div>
+    
+    <div class='card-body'>
+      
+      <div class>
+        Nombre:
+        {{user.firstName}}
+        <br />
+        Email:
+        {{user.email}}
+        <br />
+        <div class='card-header-dashboard'>
+          <div class='cardsBorder-dashboard col-4'>
+            <p class='card-header card-header-dashboard-style'>Tu pedido</p>
+            {{#each cartProducts.cartProducts}}
+              <div class='card-body'>
+                <p class='card-text'> {{product.title}} x {{quantity}}</p>
+              </div>
+            {{/each}}
+          </div>
+          <div class='cardsBorder-dashboard col-3'>
+            {{ticketPreview.totalPriceCart2}}
+      
+            {{#each ticketPreview.cartWithOutStock}}
+              <div class='card-body'>
+                <p class='card-text' style='color: #ff692d;'> {{product.title}} </p>
+              </div>
+            {{/each}}
+          </div>
+          <div class='cardsBorder-dashboard col-4'>
+            <p class='card-header card-header-dashboard-style' style="background-color:rgb(2, 230, 154); color: rgb(255, 255, 255);">RESUME</p>
+            {{#each ticketPreview.cartWithStock}}
+              <div class='card-body'>
+                <p class='card-text'> {{product.title}} x {{quantity}} = ${{totalPrice}}</p>
+              </div>
+            {{/each}}
+            <p class='card-text'><b>TOTAL</b> =>> $ {{ticketPreview.totalPriceTicket}}</p>
+          </div>
+        </div>
+        <button class='averageButton button is-primary mt-3' onclick="location.href='/products'"></span><span>Go to products</span>
+        </button>
+        <a href='/carts/purchase/{{userCartId}}' class='averageButton button is-primary mt-3'>Proceed to pay</a>
+        <br />
+      </div>
+    </div>
+  </div>
+</div>

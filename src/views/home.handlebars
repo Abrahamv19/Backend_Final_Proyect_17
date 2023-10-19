@@ -1,0 +1,74 @@
+
+<nav style="background-color: aqua;">
+  <div class='desktopNavbar'>
+
+    <div class='desktopNavRight'>
+      {{#if session}}
+      <a href='/api/sessions/current' class='cartInfo' id='{{session.cartID}}'><img src='/images/login.png'
+          alt='Icono login' /><span class='desktopNavIcon'>{{session.firstName}}</span></a>
+      <a id='logout-btn' type='submit' class='desktopNavIcon'><i class='material-icons'>exit_to_app</i>Exit</a>
+      {{else}}
+      <div class='desktopNavLog'>
+        <a href='/?login=true'><img src='/images/login.png' alt='Icono login' /><span
+            class='desktopNavLink'>Login</span></a>
+      </div>
+      <div class='desktopNavLog'>
+        <a href='/?register=true' class='desktopNavLink'>Register</a>
+      </div>
+      {{/if}}
+    
+      <div class='search-box' id='search-box'>
+        <form id='search-form'>
+          <input type='text' id='search-input' name='query' placeholder='Buscar...' />
+          <button type='submit'>Buscar</button>
+        </form>
+      </div>
+      <div>
+        <a onclick="location.href='/carts/{{session.cartID}}'"><img class='desktopNavIcon' src='/images/carrito.png'
+            alt='carrito' /></a>
+      </div>
+     
+    </div>
+    {{#if isAdmin}}
+    <div class='admin-button'>
+      <button class='button is-info' onclick="location.href='http://localhost:8080/api/sessions/adminControl'">
+        <span class='icon'><i class='material-icons'>admin_panel_settings</i></span>
+        <span>Users Database</span>
+      </button>
+    </div>
+    {{/if}}
+
+    <div class=''>
+      <button onclick="location.href='/chat'">
+        <i class='material-icons'>chat</i></button>
+    </div>
+  </div>
+
+</nav>
+    <div class="full-screen">
+       <br>
+      <div class='dashboard-container' style="background-color: rgb(0, 0, 0); font-size: 40px;">
+       
+        <h1 class='home-title' style="color: rgb(255, 255, 255);">WELCOME TO PS5 STORE</h1>
+      </div>
+      <br>
+      <br>
+      <br>
+      <br>
+      <div class='dashboard-container'>
+    
+    
+        <img src="https://res.cloudinary.com/abrahama19/image/upload/v1696269469/concola_ps5_home_page_ntevom.jpg"
+          width="750" height="450" />
+    
+      </div>
+    </div>
+
+   
+
+<section>
+
+</section>
+
+<script src='/js/profile.js'></script>
+<script src='/js/home.js'></script>

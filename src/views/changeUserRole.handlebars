@@ -1,0 +1,25 @@
+  <div style="padding:100px">
+   <div>
+          <div style="text-align: left;>
+               <a onclick=" location.href='/products'"><img src='https://res.cloudinary.com/abrahama19/image/upload/v1691861389/logoPS5_ryhtjh.jpg' alt='logo' width='200px' style='margin-left: 1.4rem;' /></a>
+               </div>
+                 <span class='desktopNavLinkLogo'>Ps5 Web Store</span>
+            </div>
+            <br>
+            <br>
+            <br>
+
+
+<h1 Style="font-family: Georgia, 'Times New Roman', Times, serif;">CHANGE OF ROLE</h1>
+<p>CURRENT ROLE ID: {{user._id}}</p>
+<p>CURRENT ROLE: {{user.role}}</p>
+<form action='/api/sessions/users/premium/{{user._id}}' method='post'>
+  <label for='role'>Change Role:</label>
+  <select name='role' id='role'>
+    <option value='user'>User</option>
+    <option value='premium'>Premium</option>
+  </select>
+  <button type='submit' class='button is-info'>Change Role</button>
+</form>
+</div>
+

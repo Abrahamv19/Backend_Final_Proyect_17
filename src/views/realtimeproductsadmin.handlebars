@@ -1,0 +1,91 @@
+
+<nav>
+  <div class='desktopNavbar'>
+    {{#if realTimeProductsRender.realTimeProductsContext.session}}
+        <div>
+        <a href='http://localhost:8080/'><span class='desktopNavLinkLogo'>Ps5 Web Store</span></a>
+      </div>
+      <div>
+        <h2 class='navbar__title'>{{realTimeProductsRender.realTimeProductsContext.session.firstName}} Create Products.</h2>
+      </div>
+      <div class='navbar__content'>
+        <span class='desktopNavIcon'>{{realTimeProductsRender.realTimeProductsContext.session.firstName}}<a
+            href='/api/sessions/current'
+            class='cartInfo'
+            id='{{realTimeProductsRender.realTimeProductsContext.session.cartID}}'
+          ><img src='/images/login.png' alt='Icono login' /></a></span>
+        {{!-- <a id='logout-btn' type='submit' class='desktopNavIcon'><i class='material-icons'>exit_to_app</i>Salir33</a> --}}
+        {{!-- <a id='logout-btn' type='submit' class='desktopNavIcon'><i class='material-icons'>exit_to_app</i>Salir</a> --}}
+      </div>
+    {{else}}
+      <p class='navbar__guest-message'>WELCOME TO PS5 WEB STORE</p>
+      <a href='/?login=true' class='navbar__link button is-light'>LOG IN</a>
+      <a href='/?register=true' class='navbar__link button is-primary'>SING IN</a>
+    {{/if}}
+    {{#if realTimeProductsRender.realTimeProductsContext.isAdmin}}
+      <div class='admin-button'>
+        <button class='button is-primary' onclick="location.href='/api/users/adminControl'">
+          <span class='icon'><i class='material-icons'>admin_panel_settings</i></span>
+          <span>Users Database</span>
+        </button>
+      </div>
+    {{/if}}
+  </div>
+</nav>
+<section>
+
+</section>
+<section class='mt-6'>
+  <div id='cardContainer' style='text-align: center;' class='container is-flex is-flex-wrap-wrap'>
+    <div>
+      SORT
+      <a href='?page={{paginationInfo.page}}&limit={{paginationInfo.limit}}&sort=asc'>⬆️</a>
+      <a href='?page={{paginationInfo.page}}&limit={{paginationInfo.limit}}&sort=desc'>⬇️</a>
+    </div>
+    {{#each realTimeProductsRender.productsVisualice}}
+      <div class='card' style='width: 150px; margin: 20px'>
+        <div class='card-content'>
+          <div class='media'>
+            <div class='media-content'>
+              <p class='title is-6'>Name: {{this.title}}</p>
+              <p class='subtitle is-6'>Description: {{this.description}}</p>
+              <p class='subtitle is-6'>Price: {{this.price}}</p>
+              <p class='subtitle is-6'>Stock: {{this.stock}}</p>
+              <p class='subtitle is-6'>Category: {{this.category}}</p>
+            </div>
+          </div>
+          <button class='button is-small delete-button is-primary' type='button' data-product-id='{{this._id}}' onclick='deleteProductAdmin("{{this._id}}")'>
+           
+            <p>DELETE</p>
+          </button>
+        </div>
+      </div>
+    {{/each}}
+  </div>
+  <div style='display: flex; justify-content: center; margin-top: 30px'>
+    <div class='pagination'>
+      {{#if realTimeProductsRender.paginationInfo.hasPrevPage}}
+        <a href='?page={{realTimeProductsRender.paginationInfo.prevPage}}&limit={{realTimeProductsRender.paginationInfo.limit}}&sort={{realTimeProductsRender.sort}}'>⬅️ Preview</a>
+      {{/if}}
+      <span style='margin-left: 20px; margin-right: 20px'>
+        Page
+        {{realTimeProductsRender.paginationInfo.page}}
+        of
+        {{realTimeProductsRender.paginationInfo.totalPages}}
+      </span>
+      {{#if realTimeProductsRender.paginationInfo.hasNextPage}}
+        <a href='?page={{realTimeProductsRender.paginationInfo.nextPage}}&limit={{realTimeProductsRender.paginationInfo.limit}}&sort={{sort}}'>Next ➡️</a>
+      {{/if}}
+    </div>
+  </div>
+</section>
+
+<br>
+
+ <div class='centered-div'>
+      <button onclick="location.href='/chat'" class="btn btn-info">
+        <p>Chat with Us!!</p></button>
+    </div>
+
+<script src='/js/products.js'></script>
+<script src='/js/searchbar.js'></script>
