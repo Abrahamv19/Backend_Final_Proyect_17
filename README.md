@@ -13,7 +13,7 @@
 - USER= juan@g.com
 - PASSWORD= 123
 #### ADMIN CONTROLS / Para borrar productos y acceder al panel de administrador (USERS DATABASE) en Development Mode ingrese un admin user:
-- USER== adminCoder@coder.com
+- USER= adminCoder@coder.com
 - PASSWORD= adminCod3r123
 
 ## PRODUCTION MODE / MONGODB = productionDB
@@ -22,7 +22,7 @@
 - USER= luna@g.com
 - PASSWORD= 123
 #### ADMIN CONTROLS / Para borrar productos y acceder al panel de administrador (USERS DATABASE) en Production Mode ingrese un admin user:
-- USER== adminCoder@coder.com
+- USER= adminCoder@coder.com
 - PASSWORD= adminCod3r123
 
 ### ADMIN PANEL 
