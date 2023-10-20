@@ -31,8 +31,8 @@ class TokenController {
       const mailOptions = {
         from: mailController.GOOGLE_EMAIL,
         to: email,
-        subject: 'Recuperación de Contraseña',
-        html: `Para restablecer tu contraseña, haz clic en el siguiente enlace: <a href="${resetLink}">${resetLink}</a>`,
+        subject: 'Password recovery',
+        html: `To reset your password, click the following link: <a href="${resetLink}">${resetLink}</a>`,
       };
       await mailController.sendMail(mailOptions);
       logger.debug(`Password reset email sent to: ${email}`);
