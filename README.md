@@ -3,6 +3,7 @@
 
 ### PARA ARRANCAR LA APLICACION:
 - Una vez clonado el repositorio, corra el comando: npm install
+- Quite la extension (.copy) de los archivos .env.copy  .env.development.copy y .env.production.copy 
 - Ingrese la credenciales de goggle en archivo .env.development y .env.production 
 - Para arrancar la aplicacion en modo development, corra el comando: npm run dev 
 - Para arrancar la aplicacion en modo Production, corra el comando: npm run start 
@@ -30,5 +31,10 @@
 - http://localhost:8080/api/users/admincontrol 
 
 ### DOCUMENTATION
-#### Documentacion Swagger: 
+#### Documentacion Swagger Products y Carts: 
 - http://localhost:8080/api/docs/
+
+### TEST
+- Para correr cart.test y products.test primero cambie el pueto del archivo .env.development  a 8081 
+- corra en una terminal el comando npm run dev
+- Abra una segunda terminal y corra el comando npm run test 
