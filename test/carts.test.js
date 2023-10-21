@@ -8,6 +8,10 @@ let cartID = '653140e33b3dd5a13ff101c7';
 const cid = '653140e33b3dd5a13ff101c7';
 const pid = '6531914e10f19b47c6fc54ba';
 
+let cartID2 = '65313c0bfa69948dc86b71ae';
+const cid2 = '65313c0bfa69948dc86b71ae';
+const pid2 = '653191e010f19b47c6fc54cf';
+
 before(async function loginUser() {
   const loginCredentials = {
     email: 'test@test.com',
@@ -53,7 +57,7 @@ describe('Carts', () => {
     expect(_body.cart).to.have.property('_id');
   });
   it('should delete a product from a cart successfully', async () => {
-    const response = await requester.delete(`/api/carts/${cid}/product/${pid}`);
+    const response = await requester.delete(`/api/carts/${cid2}/product/${pid2}`);
     expect(response.status).to.equal(200);
     expect(response.body).to.have.property('status', 'success');
     expect(response.body).to.have.property('message', 'Product removed from cart');

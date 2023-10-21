@@ -36,14 +36,16 @@ const app = express();
 const port = config.port;
 // SWAGGER
 app.use('/api/docs', swaggerUi.serve, swaggerUi.setup(specs));
-// CORS
-  const corsOptions = {
-  origin: 'http://localhost:8080',
-  methods: 'GET,HEAD,PUT,PATCH,POST,DELETE',
-  credentials: true,
-  optionsSuccessStatus: 204,
-};
-app.use(cors(corsOptions)); 
+
+// CORS / PARA TEST EN PUERTO 8081 SE DEBLEN DESHABILITAR
+//   const corsOptions = {
+//   origin: 'http://localhost:8080',
+//   methods: 'GET,HEAD,PUT,PATCH,POST,DELETE',
+//   credentials: true,
+//   optionsSuccessStatus: 204,
+// };
+// app.use(cors(corsOptions)); 
+
 // MIDDLEWARES
 app.use(serveFavicon('favicon.ico'));
 app.use(morgan('dev'));
@@ -52,6 +54,7 @@ app.use(express.urlencoded({ extended: true }));
 app.use(express.static(path.join(__dirname, 'public')));
 app.use(bodyParser.urlencoded({ extended: true }));
 app.use(bodyParser.json());
+
 // HANDLEBARS
 const hbs = exphbs.create({
   runtimeOptions: {
